@@ -1,0 +1,24 @@
+.card-class {
+    border-radius: 10px;
+    height: 100px;
+}
+.card-class :hover {
+    background-color: lightgrey;
+    cursor: pointer;
+}
+.badge {
+    float:right
+}
+
+.del {
+    cursor: pointer;
+}
+
+.info {
+    margin-left: 10px;
+    color: lightskyblue;
+}
+
+.edit {
+    cursor: pointer;
+}

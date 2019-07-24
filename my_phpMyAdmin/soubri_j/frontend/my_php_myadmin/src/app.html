@@ -1,0 +1,32 @@
+<div id="app">
+    <b-container>
+        <b-row class="header">
+            <b-col sm="2">
+                <img src="./assets/logo.png" style="width: 50%; float: left"/>
+            </b-col>
+            <b-col sm="10">
+                <h1>my_phpMyAdmin</h1>
+            </b-col>
+        </b-row>
+        <b-row>
+            <b-col sm="12">
+                <b-alert :show="dismiss_cpt" dismissible :variant="return_type" 
+                            @dismissed="dismiss_cpt=0" @dismiss-count-down="decrease_cpt">
+                    <p>{{ message }}</p>
+                </b-alert>
+            </b-col>
+        </b-row>
+        <b-row>
+            <b-col sm="3">
+                <databases-component :selected_database="selected_database" 
+                                        @databaseChanged="selected_database = $event"
+                                        @returnEvent="show_message($event)"></databases-component>
+            </b-col>
+            <b-col sm="9">
+                <list-tables-component :selected_database="selected_database" 
+                                        @selectedTableChanged="selected_table = $event"
+                                        @returnEvent="show_message($event)"></list-tables-component>
+            </b-col>
+        </b-row>
+    </b-container>
+</div>

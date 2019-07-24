@@ -1,0 +1,41 @@
+<div>
+    <b-form @submit.prevent="add_database()">
+        <b-form-input placeholder="database to add" 
+                    v-model="database_to_add"
+                    type="text"
+                    :state="added_state">
+        </b-form-input>
+        <b-form-invalid-feedback>
+            {{ error_msg }}
+        </b-form-invalid-feedback>
+    </b-form>
+    <b-list-group>
+        <b-list-group-item v-for="(database, index) in databases" 
+                            :class="selected_index == index ? 'selected' : ''"
+                            :key="index" 
+                            v-on:click="select_database(database.database_name, index);"
+                            :id="'id' + database.database_name">
+            <database-stats :selected_database="database.database_name" :target="'id' +  database.database_name"></database-stats>
+            <b-row>
+                <b-col sm="8">
+                    <div v-if="!edit_mode || selected_index != index" class="item">{{ database.database_name }}</div>
+                    <b-form v-else @submit.prevent="rename_database(database.database_name)">
+                        <b-form-input v-model="database.database_name"
+                                        type="text"
+                                        class="db-rename">
+                        </b-form-input>
+                    </b-form>
+                </b-col>
+                <b-col sm="2"><i class="fas fa-edit" v-on:click="edit_mode = !edit_mode"></i></b-col>
+                <b-col sm="2"><i class="fas fa-minus-circle del" v-on:click="database_to_remove = database.database_name; index_to_remove = index;" v-b-modal.modalConfirm></i></b-col>
+            </b-row>
+        </b-list-group-item>
+    </b-list-group>
+    <b-modal id="modalConfirm" ref="modalConfirm" hide-footer title="Confirmation popup">
+        <b-row><b-col>Are you sure to delete {{ database_to_remove }} ?</b-col></b-row>
+        <b-row class="right">
+            <b-col><b-btn variant="success" v-on:click="cancel">Cancel</b-btn></b-col>
+            <b-col><b-btn variant="danger" v-on:click="drop_database">Delete</b-btn></b-col>
+        </b-row>
+    </b-modal>
+</div>

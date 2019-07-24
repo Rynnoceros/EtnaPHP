@@ -1,0 +1,8 @@
+<div>
+    <b-popover :target="target" triggers="hover focus" placement="top">
+        <template slot="title">Db Stats</template>
+        {{ 'tables : ' + (statistics ? + statistics.nb_tables : 0) }} <br/>
+        {{ 'creation date : ' + (statistics ? statistics.creation_date : 'null') }} <br/>
+        {{ statistics ? 'memory space : ' + statistics.memory_space + ' bytes' : '' }} <br/>
+    </b-popover>
+</div>

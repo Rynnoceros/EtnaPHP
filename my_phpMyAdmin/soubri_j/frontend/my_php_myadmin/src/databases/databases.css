@@ -1,0 +1,25 @@
+
+.list-group-item {
+    font-size:13px;
+    word-wrap: break-word;
+  }
+  .list-group-item:hover {
+    background-color: lightgray;
+    cursor: pointer;
+  }
+  
+.del {
+    color: red;
+}
+
+.item {
+    float: left;
+}
+
+.selected {
+    background-color: lightgray;
+}
+
+.db-rename {
+    font-size: 13px;
+}
